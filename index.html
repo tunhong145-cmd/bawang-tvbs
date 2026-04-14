@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2363729687464860');
+    fbq('init', '1676585166671912');
+    fbq('init', '762931146236110');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2363729687464860&ev=PageView&noscript=1"/></noscript>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TVBS 健康頻道 | 獨家報導：中老年男性健康的秘密突破</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --tvbs-blue: #003e8c;
+            --tvbs-red: #cc0000;
+            --tvbs-gray: #f5f5f5;
+            --text-dark: #333;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            margin: 0; padding: 0; color: var(--text-dark); line-height: 1.6;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 15px; box-sizing: border-box; }
+
+        /* 【新增】訂購喜報彈窗樣式 (來自 index.txt) */
+        #order-news { position: fixed; top: 80px; left: 10px; z-index: 9999; background: rgba(0, 0, 0, 0.8); color: #fff; padding: 8px 15px; border-radius: 30px; font-size: 13px; display: none; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); animation: fadeInOut 5s infinite; }
+        #order-news img { width: 20px; height: 20px; margin-right: 8px; }
+        @keyframes fadeInOut { 0% { opacity: 0; transform: translateY(-20px); } 10% { opacity: 1; transform: translateY(0); } 90% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-20px); } }
+
+        /* 1. TVBS 導航 */
+        header { border-bottom: 4px solid var(--tvbs-red); position: sticky; top: 0; background: #fff; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .nav-top { background: var(--tvbs-blue); color: #fff; font-size: 12px; padding: 5px 0; }
+        .nav-main { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; }
+        .logo { height: 40px; } 
+        .category-nav { display: flex; gap: 15px; font-weight: bold; border-top: 1px solid #eee; padding: 10px 0; overflow-x: auto; white-space: nowrap; }
+        .category-nav::-webkit-scrollbar { display: none; }
+        .category-nav span { color: var(--tvbs-blue); font-size: 14px; }
+
+        /* 2. Hero Section */
+        .hero { padding: 30px 0; border-bottom: 1px solid #eee; }
+        .hero h1 { font-size: 30px; font-weight: 900; line-height: 1.3; color: #000; margin-bottom: 15px; }
+        .hero-meta { color: #666; font-size: 14px; margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
+        .hero-img { width: 100%; height: auto; border-radius: 4px; margin-bottom: 20px; display: block; }
+        .usp-list { background: #fff4f4; border: 1px solid var(--tvbs-red); padding: 20px; border-radius: 8px; }
+        .usp-list ul { margin: 0; padding-left: 20px; color: var(--tvbs-red); font-weight: bold; font-size: 18px; }
+
+        /* 3. 名醫背書 */
+        .expert-section { background: var(--tvbs-gray); padding: 40px 0; margin-top: 30px; }
+        .expert-card { display: flex; gap: 30px; align-items: center; flex-wrap: wrap; }
+        .expert-img { flex: 1; min-width: 300px; border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); max-width: 100%; }
+        .expert-content { flex: 1; min-width: 300px; }
+        .badge { background: var(--tvbs-blue); color: #fff; padding: 5px 10px; border-radius: 3px; font-weight: bold; }
+        .img-caption { font-size: 13px; color: #666; margin-top: 8px; line-height: 1.4; background: #eee; padding: 5px; }
+
+        /* 4. 痛點 */
+        .pain-box { border-left: 10px solid var(--tvbs-red); background: #fffafa; padding: 30px; margin: 40px 0; }
+        .pain-list { padding: 0; margin: 0; }
+        .pain-list li { margin-bottom: 15px; font-size: 19px; list-style: none; position: relative; padding-left: 25px; }
+        .pain-list li::before { content: "✕"; color: var(--tvbs-red); font-weight: bold; position: absolute; left: 0; }
+
+        /* 5. 警告 */
+        .warning-box { background: #000; color: #fff; padding: 40px; border-radius: 15px; text-align: center; margin: 40px 0; border: 3px solid var(--tvbs-red); }
+        .warning-box h2 { color: #ffcc00; font-size: 28px; }
+
+        /* 6. 成分與效果 */
+        .ingredient-box { background: #fff; padding: 40px 0; }
+        .ingredient-item { background: #fdf2f2; padding: 20px; border-radius: 10px; margin-bottom: 20px; border: 1px dashed var(--tvbs-red); }
+        .ingredient-item h3 { color: var(--tvbs-red); margin-top: 0; font-size: 22px; }
+
+        /* 7. 對比分析 */
+        .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+        .compare-item { padding: 20px; border-radius: 10px; border: 1px solid #ddd; background: #f9f9f9; text-align: center; }
+        .compare-item.good { border: 2px solid #28a745; background: #f8fff8; }
+        .img-square-wrapper { width: 100%; aspect-ratio: 1 / 1; background: #fff; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; border-radius: 8px; overflow: hidden; border: 1px solid #eee; }
+        .img-square-wrapper img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        /* 8. 用戶好評 */
+        .review-section { background: #fff; padding: 50px 0; border-top: 1px solid #eee; }
+        .review-card { background: #fdfdfd; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eee; }
+        .review-user { display: flex; align-items: center; gap: 15px; margin-top: 15px; }
+        .review-avatar { width: 50px; height: 50px; border-radius: 50%; background: #ddd; }
+
+        /* FAQ 樣式 */
+        .faq-section { background: #f4f7f9; padding: 60px 0; }
+        .faq-title { text-align: center; margin-bottom: 40px; color: var(--tvbs-blue); font-size: 28px; font-weight: 900; }
+        .faq-item { background: #fff; margin-bottom: 15px; border-radius: 10px; border: 1px solid #e0e0e0; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .faq-question { padding: 20px 25px; font-weight: bold; font-size: 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: #fff; }
+        .faq-question::after { content: '▼'; font-size: 14px; color: var(--tvbs-red); transition: transform 0.3s; }
+        .faq-answer { padding: 0 25px; max-height: 0; overflow: hidden; transition: all 0.3s ease-out; background: #fff; line-height: 1.8; color: #555; font-size: 16px; }
+        .faq-item.active .faq-answer { padding: 15px 25px 25px; max-height: 800px; border-top: 1px solid #f0f0f0; }
+        .faq-item.active .faq-question::after { transform: rotate(180deg); }
+
+        /* 9. CTA 產品訂購區 */
+        .cta-box { text-align: center; padding: 60px 0; background: linear-gradient(180deg, var(--tvbs-blue) 0%, #001a3d 100%); color: #fff; }
+        .new-price { font-size: 48px; color: #ffcc00; font-weight: 900; display: block; }
+        .old-price { font-size: 22px; text-decoration: line-through; color: #bbb; }
+        .btn-order { background: var(--tvbs-red); color: #fff; padding: 22px 60px; font-size: 28px; font-weight: 900; text-decoration: none; border-radius: 50px; display: inline-block; box-shadow: 0 10px 20px rgba(0,0,0,0.3); animation: pulse 2s infinite; cursor: pointer; border: none; }
+        .product-img-main { width: 250px; max-width: 80%; margin: 0 auto 25px; display: block; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.6)); }
+
+        /* 10. 懸浮按鈕 */
+        .sticky-btn-wrapper { position: fixed; bottom: 20px; left: 0; width: 100%; display: flex; justify-content: center; z-index: 999; transition: 0.3s; }
+        .btn-float { background: #ffcc00; color: #000; padding: 15px 40px; font-size: 20px; font-weight: 900; text-decoration: none; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); border: 2px solid #fff; animation: pulse 1.5s infinite; }
+        .hidden-float { opacity: 0; pointer-events: none; transform: translateY(20px); }
+
+        /* 彈窗 */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; }
+        .modal-content { background: #fff; padding: 35px; border-radius: 15px; width: 90%; max-width: 450px; position: relative; color: #333; }
+        .close-btn { position: absolute; right: 15px; top: 10px; font-size: 30px; cursor: pointer; color: #999; }
+        .submit-btn { width: 100%; background: var(--tvbs-red); color: #fff; border: none; padding: 18px; font-size: 20px; font-weight: bold; border-radius: 8px; cursor: pointer; margin-top: 10px; }
+
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 24px; }
+            .compare-grid { grid-template-columns: 1fr; }
+            .expert-img, .expert-content { min-width: 100%; }
+            .btn-order { width: 90%; padding: 18px 0; font-size: 22px; }
+            .btn-float { width: 85%; text-align: center; font-size: 18px; }
+            .logo { height: 32px; }
+            .product-img-main { width: 200px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="order-news">
+    <img src="https://www.freeiconspng.com/uploads/success-icon-10.png">
+    <span id="order-text"></span>
+</div>
+
+<div class="sticky-btn-wrapper" id="floatBtn">
+    <a href="javascript:void(0)" class="btn-float" onclick="fbq('track', 'AddToCart'); scrollToOrder();">立即領取 5 折優惠 ➔</a>
+</div>
+
+<header>
+    <div class="nav-top">
+        <div class="container">TVBS 新聞網 | 台北市 | 股市熱訊：漢方健康產業產值創新高</div>
+    </div>
+    <div class="container nav-main">
+        <img src="tvbs-logo.png" class="logo" alt="TVBS Logo">
+        <div style="font-weight: bold; color: var(--tvbs-blue);">健康頻道 | 獨家報導</div>
+    </div>
+    <div class="container">
+        <div class="category-nav">
+            <span>首頁</span><span>熱門</span><span>男性健康</span><span>漢方草本</span><span>獨家專訪</span><span>養生之道</span>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <section class="hero">
+        <h1>從此不再“繳械”！曾被限制出口的漢方精華，讓台灣中老年男性重燃巅峰戰火</h1>
+        <div class="hero-meta">發佈時間：2026/04/13 | 責任編輯：健康專題組 | 瀏覽次數：528,941</div>
+        <img src="hero-banner.jpg" class="hero-img">
+        <div class="usp-list">
+            <ul>
+                <li>⚡ 3天深層活化，感受澎湃硬實力</li>
+                <li>🌿 傳承古法漢方，100%天然無依賴</li>
+                <li>🏆 全台超過58,000名男性口碑見證</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="expert-section">
+        <div class="expert-card">
+            <img src="ntu-hospital-event.jpg" class="expert-img">
+            <div class="expert-content">
+                <span class="badge">權威響應</span>
+                <p class="img-caption">▲台大醫院攜手台灣楓城泌尿學會響應「Movember-Go big for men's health」活動。（圖／台大醫院提供）</p>
+                <h2 style="margin-top: 15px;">醫界關注：男性健康不能等，從根本解決「力不從心」</h2>
+                <p>在男性健康月活動中，專家指出台灣男性往往因壓力忽略機能衰退警訊。研究顯示，<strong>【霸王養精蓄力丹】</strong>結合古法與科研，已成為中老年男性保養首選。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pain-box">
+        <h2>這是否也是你不敢說的痛？</h2>
+        <ul class="pain-list">
+            <li>進門不到3分鐘，看著另一半失望的眼神？</li>
+            <li>想戰鬥卻“垂頭氣”，力不從心？</li>
+            <li>長期腰膝酸軟、精神委靡，像被掏空了？</li>
+            <li>試過西藥，卻擔心心悸、頭暈等強烈副作用？</li>
+        </ul>
+    </section>
+
+    <section class="warning-box">
+        <h2>⚠️ 警告：精氣虧虛不只是房事問題！</h2>
+        <p>長期忽視生理功能衰退，會導致早衰及男性更年期提前。這不僅關乎尊嚴，更關乎您的全身健康與家庭和諧。</p>
+    </section>
+
+    <section class="ingredient-box">
+        <h2 style="text-align:center; margin-bottom: 30px;">霸王級成分：每一粒都是男人的“核動力”</h2>
+        <div class="ingredient-item">
+            <h3>🔥 頂級黑瑪咖：男人的發動機</h3>
+            <p>來自秘魯高海拔，純度提升10倍，讓體力像超跑發動機一樣不知疲倦，24小時隨時待命！</p>
+        </div>
+        <div class="ingredient-item">
+            <h3>🔥 鹿茸/淫羊藿精粹：重燃野性</h3>
+            <p>瞬間點燃體內沈睡的雄性激素，讓你重回18歲那種原始的、爆發性的野性衝動！</p>
+        </div>
+        <div class="ingredient-item">
+            <h3>🔥 專利活化因子：鋼鐵般堅硬</h3>
+            <p>獨家技術直達核心細胞，讓你感受前所未有的“鋼鐵般”堅硬與持久，徹底告別軟綿綿！</p>
+        </div>
+    </section>
+
+    <section class="compare-section">
+        <h2 style="text-align: center; margin-bottom: 30px;">為什麼選擇霸王丹？</h2>
+        <div class="compare-grid">
+            <div class="compare-item">
+                <div class="img-square-wrapper"><img src="blue-pill-fail.jpg"></div>
+                <h3>化學小藥丸</h3>
+                <p>❌ 藥效短暫，副作用大</p>
+                <p>❌ 產生依賴，越吃越沒用</p>
+                <p>❌ 臉紅心跳、血壓飆升</p>
+            </div>
+            <div class="compare-item good">
+                <div class="img-square-wrapper"><img src="bawang-success.jpg"></div>
+                <h3>霸王養精蓄力丹</h3>
+                <p>✅ 根本調理，越用越強</p>
+                <p>✅ 100% 純漢方，溫和無負擔</p>
+                <p>✅ 提升整體精氣神，體力充沛</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="review-section">
+        <h2 style="text-align:center; margin-bottom: 40px;">全台用戶真實回饋</h2>
+        <div class="review-card">
+            <img src="user-feedback.jpg" style="width:100%; border-radius:5px; margin-bottom:15px;">
+            <p style="font-size: 18px; line-height: 1.8; color: #444; font-style: italic;">
+                “本來以為50歲就該認命了，吃了霸王丹第二週，老婆說我變了一個人，找回了當初蜜月的感覺！現在每天早上都很有精神，不僅是那方面，體力也變好了！”
+            </p>
+            <div class="review-user">
+    <img src="user-avatar.jpg" class="review-avatar"> <div><strong>台中 林先生 (52歲)</strong><br><span style="color:#28a745;">已驗證購買</span></div>
+</div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="faq-title">💡 常見問題 FAQ</h2>
+            <div class="faq-item">
+                <div class="faq-question">服用【霸王丹】多久能看到明顯效果？</div>
+                <div class="faq-answer">
+                    根據大多數用戶的反饋，服用後的 3 天內即可感受到深層的體力活化。為了達到從根本改善“力不從心”的效果，我們建議按療程持續服用 2-4 週，能有效鞏固硬實力。
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">長期服用會有依賴性或副作用嗎？</div>
+                <div class="faq-answer">
+                    絕對不會。本產品傳承古法漢方，採用 100% 純天然萃取成分（如頂級黑瑪咖、鹿茸等），不含化學添加劑。它與市面上瞬間爆發、傷身的化學藥物不同，是溫和調理精氣神，不會產生依賴性，更不會引起心悸或頭暈。
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">有三高（高血壓、高血糖、高血脂）的人可以服用嗎？</div>
+                <div class="faq-answer">
+                    【霸王丹】性質溫和，主要是補足精氣、提升機能。對於三高族群，建議在服用前先諮詢您的主治醫師。只要身體狀況穩定，按量服用是非常安全的。
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">配送過程會保護我的個人隱私嗎？</div>
+                <div class="faq-answer">
+                    我們深知隱私的重要性。所有訂單均採用**全密封、無標識包裝**。快遞單上僅會顯示“生活用品”或“禮品”，絕對不會出現產品名稱及功效等敏感字樣，您可以放心收貨，避免尷尬。
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="cta-box" id="order-section">
+    <div class="container">
+        <h2>今日限定：找回男人的巔峰自信</h2>
+        <div style="margin: 25px 0;">
+            <span class="old-price">官網原價：NT$ 2796</span>
+            <span class="new-price">限時半價：NT$ 1398</span>
+        </div>
+        <img src="product-bottle.png" class="product-img-main" alt="霸王丹透明產品圖">
+        <br>
+        <button class="btn-order" onclick="fbq('track', 'AddToCart'); openOrderModal();">立即領取半價優惠 ➔</button>
+        <p style="margin-top: 25px;">限時倒計時：<span id="timer" style="color: #ffcc00; font-size: 26px; font-weight: bold;">20:00</span></p>
+    </div>
+</footer>
+
+<div id="orderModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeOrderModal()">&times;</span>
+        <h3 style="text-align:center; color:var(--tvbs-red); margin-bottom:20px;">領取 5 折優惠訂購</h3>
+        <form id="orderForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSe-sv68p-RF9rzBHcrAAPkjUJXxqdOEms7LxG-7kFTvvBoOQg/formResponse" method="POST" target="hidden_iframe">
+            <div style="margin-bottom:15px;">
+                <label style="display:block; font-weight:bold; margin-bottom:5px;">您的姓名</label>
+                <input type="text" id="custName" name="entry.258352919" placeholder="請輸入姓名" style="width:100%; padding:12px; border:1px solid #ccc; border-radius:5px;" required>
+            </div>
+            <div style="margin-bottom:15px;">
+                <label style="display:block; font-weight:bold; margin-bottom:5px;">聯絡電話</label>
+                <input type="tel" id="userPhone" placeholder="請輸入手機號碼（例：0912345678）" style="width:100%; padding:12px; border:1px solid #ccc; border-radius:5px;" required>
+                <input type="hidden" id="fullPhone" name="entry.704955727">
+                <input type="hidden" id="userIP" name="entry.770254355">
+            </div>
+            <p style="text-align:center; font-weight:bold;">應付金額：<span style="color:var(--tvbs-red); font-size:24px;">NT$ 1398</span></p>
+            <button type="submit" id="submitBtn" class="submit-btn" onclick="fbq('track', 'Purchase', {value: 1398, currency: 'TWD'});">搶先預留優惠名額</button>
+        </form>
+    </div>
+</div>
+
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="handleIframeLoad()"></iframe>
+
+<script>
+    // 1. 倒計時邏輯
+    let timeLeft = 20 * 60;
+    setInterval(() => {
+        let min = Math.floor(timeLeft / 60);
+        let sec = timeLeft % 60;
+        document.getElementById('timer').innerText = `${min}:${sec < 10 ? '0'+sec : sec}`;
+        if (timeLeft > 0) timeLeft--;
+    }, 1000);
+
+    // 2. 彈窗控制
+    function openOrderModal() { 
+        document.getElementById('orderModal').style.display = 'flex'; 
+    }
+    function closeOrderModal() { document.getElementById('orderModal').style.display = 'none'; }
+    window.onclick = function(e) { if(e.target.className == 'modal') closeOrderModal(); }
+
+    // 3. FAQ 交互
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.parentElement;
+            item.classList.toggle('active');
+        });
+    });
+
+    // 4. 平滑滾動與懸浮按鈕控制
+    function scrollToOrder() {
+        document.getElementById('order-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    window.addEventListener('scroll', function() {
+        const floatBtn = document.getElementById('floatBtn');
+        const orderSection = document.getElementById('order-section');
+        const sectionTop = orderSection.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (sectionTop < windowHeight * 0.8) {
+            floatBtn.classList.add('hidden-float');
+        } else {
+            floatBtn.classList.remove('hidden-float');
+        }
+    });
+
+    // 5. 【新增】整合 index.txt 的訂購喜報邏輯
+    const names = ['王*德', '李*榮', '陳*廷', '張*豪', '林*宏', '吳*成', '蔡*志', '黃*文', '許*睿', '郭*賢'];
+    const cities = ['台北市', '新北市', '桃園市', '台中市', '台南市', '高雄市', '新竹縣', '彰化縣', '屏東縣', '宜蘭縣'];
+    function showOrderNews() {
+        const orderNews = document.getElementById('order-news');
+        const orderText = document.getElementById('order-text');
+        const name = names[Math.floor(Math.random() * names.length)];
+        const city = cities[Math.floor(Math.random() * cities.length)];
+        const product = ['1瓶裝', '2瓶裝', '3瓶裝'][Math.floor(Math.random() * 3)];
+        orderText.innerText = `${Math.floor(Math.random() * 10) + 1}分鐘前，${city}的${name}已訂購 ${product}`;
+        orderNews.style.display = 'flex';
+        setTimeout(() => { orderNews.style.display = 'none'; }, 5000);
+    }
+    setInterval(showOrderNews, 15000);
+    setTimeout(showOrderNews, 3000);
+
+    // 6. 【新增】IP 獲取與表單提交邏輯
+    fetch('https://api.ipify.org?format=json').then(res => res.json()).then(data => { document.getElementById('userIP').value = data.ip; });
+
+    var isSubmitting = false;
+    window.handleIframeLoad = function() {
+        if (isSubmitting) {
+            // 注意：這裡原本已有 Purchase 事件，我保留了它以確保提交成功後再次驗證，與按鈕上的點擊事件雙重保障
+            fbq('track', 'Purchase', {value: 1398, currency: 'TWD'});
+            alert('名額預留成功！專員稍後將與您電話聯繫說明，請保持手機暢通！');
+            isSubmitting = false; 
+            location.reload();
+        }
+    };
+
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+        document.getElementById('fullPhone').value = document.getElementById('userPhone').value.trim();
+        isSubmitting = true;
+        document.getElementById('submitBtn').innerText = "處理中...";
+        document.getElementById('submitBtn').disabled = true;
+    });
+</script>
+</body>
+</html>
