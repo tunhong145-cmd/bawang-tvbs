@@ -10,13 +10,12 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1497404568540227');
+   fbq('init', '1497404568540227');
     fbq('init', '1676585166671912');
     fbq('init', '762931146236110');
     fbq('init', '1854857605177470');
     fbq('track', 'PageView');
     </script>
-    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2363729687464860&ev=PageView&noscript=1"/></noscript>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -96,7 +95,6 @@
         .faq-item.active .faq-answer { padding: 18px 28px 28px; max-height: 800px; border-top: 1px solid #f0f0f0; }
         .faq-item.active .faq-question::after { transform: rotate(180deg); }
 
-        /* --- 底部佈局與懸浮按鈕 --- */
         .cta-box { text-align: center; padding: 50px 0; background: linear-gradient(180deg, var(--tvbs-blue) 0%, #001a3d 100%); color: #fff; }
         .new-price { font-size: 52px; color: #ffcc00; font-weight: 900; display: block; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); line-height: 1.1; margin: 10px 0; }
         .old-price { font-size: 22px; text-decoration: line-through; color: #ccc; }
@@ -118,14 +116,10 @@
 
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.03); } 100% { transform: scale(1); } }
 
-        /* --- 手機端特殊處理 --- */
         @media (max-width: 768px) {
             .hero h1 { font-size: 25px; }
-            /* 恢復為什麼選擇霸王丹上下顯示 */
             .compare-grid { grid-template-columns: 1fr !important; }
             .compare-item { margin-bottom: 20px; }
-            
-            /* 底部佈局壓縮以適配屏高 */
             .cta-box { padding: 25px 15px; }
             .cta-box h2 { font-size: 24px !important; margin-bottom: 10px; }
             .new-price { font-size: 42px; margin: 5px 0; }
@@ -133,7 +127,6 @@
             .product-img-main { width: 150px; margin-bottom: 15px; } 
             .btn-order { width: 100%; padding: 16px 0; font-size: 22px; }
             #timer { font-size: 22px !important; }
-            
             .btn-float { width: 90%; text-align: center; font-size: 18px; }
         }
     </style>
@@ -141,7 +134,8 @@
 <body>
 
 <div class="sticky-btn-wrapper" id="floatBtn">
-    <a href="javascript:void(0)" class="btn-float" onclick="fbq('track', 'AddToCart'); scrollToOrder();">立即領取 5 折優惠 ➔</a>
+    <!-- 加入 handleAddToCart 以確保追蹤生效 -->
+    <a href="javascript:void(0)" class="btn-float" onclick="handleAddToCart(); scrollToOrder();">立即領取 5 折優惠 ➔</a>
 </div>
 
 <header>
@@ -298,7 +292,7 @@
                 <span class="new-price">限時半價：NT$ 1398</span>
             </div>
             <img src="product-bottle.png" class="product-img-main" alt="產品圖">
-            <button class="btn-order" onclick="fbq('track', 'AddToCart'); openOrderModal();">立即領取半價優惠 ➔</button>
+            <button class="btn-order" onclick="handleAddToCart(); openOrderModal();">立即領取半價優惠 ➔</button>
             <p style="margin: 15px 0 0 0; font-size: 18px;">限時倒計時：<span id="timer" style="color: #ffcc00; font-size: 28px; font-weight: bold;">20:00</span></p>
         </div>
     </div>
@@ -328,12 +322,13 @@
 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="handleIframeLoad()"></iframe>
 
 <script>
-    // 1. 倒計時邏輯
+    // 1. 倒計時邏輯 (已修正 ID 获取)
     let timeLeft = 20 * 60;
     setInterval(() => {
         let min = Math.floor(timeLeft / 60);
         let sec = timeLeft % 60;
-        document.getElementById('timer').innerText = `${min}:${sec < 10 ? '0'+sec : sec}`;
+        const timerEl = document.getElementById('timer');
+        if(timerEl) timerEl.innerText = `${min}:${sec < 10 ? '0'+sec : sec}`;
         if (timeLeft > 0) timeLeft--;
     }, 1000);
 
@@ -350,45 +345,89 @@
         });
     });
 
-    // 4. 平滑滾動與懸浮按鈕控制 (滑動 30% 邏輯)
-    function scrollToOrder() { document.getElementById('order-section').scrollIntoView({ behavior: 'smooth' }); }
+    // 4. 平滑滾動與懸浮按鈕控制
+    function scrollToOrder() { 
+        const target = document.getElementById('order-section');
+        if(target) target.scrollIntoView({ behavior: 'smooth' }); 
+    }
 
     window.addEventListener('scroll', function() {
         const floatBtn = document.getElementById('floatBtn');
         const orderSection = document.getElementById('order-section');
+        if(!floatBtn || !orderSection) return;
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
         const scrollPercent = (scrollTop / docHeight) * 100;
-
         if (scrollPercent > 30) { floatBtn.classList.add('show-float'); } 
         else { floatBtn.classList.remove('show-float'); }
-
         const sectionTop = orderSection.getBoundingClientRect().top;
         if (sectionTop < window.innerHeight * 0.8) { floatBtn.classList.add('hidden-float'); } 
         else { floatBtn.classList.remove('hidden-float'); }
     });
 
-    // 5. 表單提交與 IP 獲取
+    // --- 5. 核心像素追蹤與表單邏輯 ---
+
+    // 獲取 IP (保留原邏輯)
     fetch('https://api.ipify.org?format=json').then(res => res.json()).then(data => { 
         if(document.getElementById('userIP')) document.getElementById('userIP').value = data.ip; 
     });
 
     var isSubmitting = false;
+
+    // A. 修正 AddToCart (確保追蹤生效)
+    function handleAddToCart() {
+        if (typeof fbq === 'function') {
+            fbq('track', 'AddToCart');
+            console.log('AddToCart tracked');
+        }
+    }
+
+    // B. 修正 Purchase 觸發 (帶唯一 ID 去重)
     window.handleIframeLoad = function() {
-        if (isSubmitting) {
-            fbq('track', 'Purchase', {value: 1398, currency: 'TWD'});
+        if (isSubmitting === true) {
+            // 從快取中獲取剛剛生成的唯一 ID
+            const finalOrderID = localStorage.getItem('last_purchase_id') || ('ORD-' + Date.now());
+
+            if (typeof fbq === 'function') {
+                fbq('track', 'Purchase', {
+                    value: 1398, 
+                    currency: 'TWD',
+                    order_id: finalOrderID // 關鍵去重 ID
+                });
+                console.log('Purchase tracked with ID: ' + finalOrderID);
+            }
+
             alert('名額預留成功！專員稍後將與您電話聯繫說明，請保持手機暢通！');
             isSubmitting = false; 
-            location.reload();
+            localStorage.removeItem('last_purchase_id');
+            // 延遲刷新以確保追蹤發出
+            setTimeout(function(){ location.reload(); }, 1200); 
         }
     };
 
-    document.getElementById('orderForm').addEventListener('submit', function(e) {
-        document.getElementById('fullPhone').value = document.getElementById('userPhone').value.trim();
-        isSubmitting = true;
-        document.getElementById('submitBtn').innerText = "處理中...";
-        document.getElementById('submitBtn').disabled = true;
-    });
+    // C. 表單監聽邏輯
+    const orderForm = document.getElementById('orderForm');
+    if(orderForm) {
+        orderForm.addEventListener('submit', function(e) {
+            if (isSubmitting) return;
+
+            // 1. 生成唯一的去重 ID 並儲存
+            const tempOrderID = 'ORD-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+            localStorage.setItem('last_purchase_id', tempOrderID);
+
+            // 2. 處理電話與數據
+            const phoneInput = document.getElementById('userPhone');
+            const fullPhoneInput = document.getElementById('fullPhone');
+            if(phoneInput && fullPhoneInput) fullPhoneInput.value = phoneInput.value.trim();
+            
+            isSubmitting = true; 
+            const submitBtn = document.getElementById('submitBtn');
+            if(submitBtn) {
+                submitBtn.innerText = "處理中...";
+                submitBtn.disabled = true;
+            }
+        });
+    }
 </script>
 </body>
 </html>
