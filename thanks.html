@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訂購成功 | TVBS 健康頻道</title>
+    <script>
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '3182274311954572');
+        fbq('track', 'PageView');
+
+        // --- 核心追蹤邏輯 ---
+        // 1. 從 localStorage 取得訂單 ID
+        const finalOrderID = localStorage.getItem('last_purchase_id') || ('ORD-T-' + Date.now());
+
+        // 2. 檢查此標籤是否已發送過（防止刷新頁面多抓）
+        if (!sessionStorage.getItem('p_sent')) {
+            fbq('track', 'Purchase', {
+                value: 1398, 
+                currency: 'TWD',
+                order_id: finalOrderID
+            });
+            sessionStorage.setItem('p_sent', 'true'); // 會話內鎖定
+            localStorage.removeItem('last_purchase_id'); // 使用完畢即刪除
+        }
+    </script>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 100px 20px; color: #333; }
+        .success-icon { font-size: 60px; color: #28a745; }
+        .btn { display: inline-block; margin-top: 30px; padding: 12px 30px; background: #003e8c; color: #fff; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="success-icon">✓</div>
+    <h1>預留成功！</h1>
+    <p>感謝您的諮詢，我們的健康專員將在 24 小時內與您聯繫。</p>
+    <p>請保持電話暢通。</p>
+    <a href="index.html" class="btn">回到首頁</a>
+</body>
+</html>
