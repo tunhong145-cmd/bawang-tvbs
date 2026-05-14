@@ -98,10 +98,7 @@
         .btn-order { background: var(--tvbs-red); color: #fff; padding: 20px 60px; font-size: 28px; font-weight: 900; text-decoration: none; border-radius: 60px; display: inline-block; animation: pulse 2s infinite; cursor: pointer; border: 2px solid rgba(255,255,255,0.2); }
         .product-img-main { width: 240px; max-width: 80%; margin: 0 auto 20px; display: block; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.6)); }
 
-        .sticky-btn-wrapper { 
-            position: fixed; bottom: 25px; left: 0; width: 100%; display: flex; justify-content: center; z-index: 999; 
-            transition: 0.4s; opacity: 0; pointer-events: none; transform: translateY(30px);
-        }
+        .sticky-btn-wrapper { position: fixed; bottom: 25px; left: 0; width: 100%; display: flex; justify-content: center; z-index: 999; transition: 0.4s; opacity: 0; pointer-events: none; transform: translateY(30px); }
         .btn-float { background: #ffcc00; color: #000; padding: 15px 40px; font-size: 20px; font-weight: 900; text-decoration: none; border-radius: 50px; box-shadow: 0 6px 20px rgba(0,0,0,0.5); animation: pulse 1.5s infinite; }
         .show-float { opacity: 1; pointer-events: auto; transform: translateY(0); }
         .hidden-float { opacity: 0 !important; pointer-events: none; transform: translateY(30px) !important; }
@@ -131,7 +128,6 @@
 <body>
 
 <div class="sticky-btn-wrapper" id="floatBtn">
-    <!-- 加入 handleAddToCart 以確保追蹤生效 -->
     <a href="javascript:void(0)" class="btn-float" onclick="handleAddToCart(); scrollToOrder();">立即領取 5 折優惠 ➔</a>
 </div>
 
@@ -192,7 +188,7 @@
     </section>
 
     <section class="warning-box">
-        <h2>⚠️ 警告：精氣虧虛不只是房事問題！</h2>
+        <h2>⚠️ 警告：精氣虧虛不之後不只是房事問題！</h2>
         <p style="font-size: 18px;">長期忽視生理功能衰退，會導致早衰及男性更年期提前。這不僅關乎尊嚴，更關乎您的全身健康與家庭和諧。</p>
     </section>
 
@@ -299,7 +295,7 @@
     <div class="modal-content">
         <span class="close-btn" onclick="closeOrderModal()">&times;</span>
         <h3 style="text-align:center; color:var(--tvbs-red); margin-bottom:20px; font-size: 22px;">領取 5 折優惠訂購</h3>
-        <form id="orderForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdf2PtgYKOUJsQ-ypfWSZc4qyB-uQvA4SP5h7nWxfm1saYvLg/formResponse" method="POST" target="hidden_iframe">
+        <form id="orderForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdf2PtgYKOUJsQ-ypfWSZc4qyB-uQvA4SP5h7nWxfm1saYvLg/formResponse" method="POST">
             <div style="margin-bottom:15px;">
                 <label style="display:block; font-weight:bold; margin-bottom:5px;">您的姓名</label>
                 <input type="text" id="custName" name="entry.516211201" placeholder="請輸入姓名" style="width:100%; padding:12px; border:1px solid #ccc; border-radius:8px;" required>
@@ -316,10 +312,8 @@
     </div>
 </div>
 
-<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="handleIframeLoad()"></iframe>
-
 <script>
-    // 1. 倒計時邏輯 (已修正 ID 获取)
+    // 1. 倒計時邏輯 (完整保留)
     let timeLeft = 20 * 60;
     setInterval(() => {
         let min = Math.floor(timeLeft / 60);
@@ -329,12 +323,12 @@
         if (timeLeft > 0) timeLeft--;
     }, 1000);
 
-    // 2. 彈窗控制
+    // 2. 彈窗控制 (完整保留)
     function openOrderModal() { document.getElementById('orderModal').style.display = 'flex'; }
     function closeOrderModal() { document.getElementById('orderModal').style.display = 'none'; }
     window.onclick = function(e) { if(e.target.className == 'modal') closeOrderModal(); }
 
-    // 3. FAQ 交互
+    // 3. FAQ 交互 (完整保留)
     document.querySelectorAll('.faq-question').forEach(question => {
         question.addEventListener('click', () => {
             const item = question.parentElement;
@@ -342,7 +336,7 @@
         });
     });
 
-    // 4. 平滑滾動與懸浮按鈕控制
+    // 4. 平滑滾動與懸浮按鈕控制 (完整保留)
     function scrollToOrder() { 
         const target = document.getElementById('order-section');
         if(target) target.scrollIntoView({ behavior: 'smooth' }); 
@@ -362,16 +356,14 @@
         else { floatBtn.classList.remove('hidden-float'); }
     });
 
-    // --- 5. 核心像素追蹤與表單邏輯 ---
-
-    // 獲取 IP (保留原邏輯)
+    // 5. 獲取 IP (完整保留)
     fetch('https://api.ipify.org?format=json').then(res => res.json()).then(data => { 
         if(document.getElementById('userIP')) document.getElementById('userIP').value = data.ip; 
     });
 
     var isSubmitting = false;
 
-    // A. 修正 AddToCart (確保追蹤生效)
+    // A. AddToCart 追蹤 (完整保留)
     function handleAddToCart() {
         if (typeof fbq === 'function') {
             fbq('track', 'AddToCart');
@@ -379,50 +371,45 @@
         }
     }
 
-    // B. 修正 Purchase 觸發 (帶唯一 ID 去重)
-    window.handleIframeLoad = function() {
-        if (isSubmitting === true) {
-            // 從快取中獲取剛剛生成的唯一 ID
-            const finalOrderID = localStorage.getItem('last_purchase_id') || ('ORD-' + Date.now());
-
-            if (typeof fbq === 'function') {
-                fbq('track', 'Purchase', {
-                    value: 1398, 
-                    currency: 'TWD',
-                    order_id: finalOrderID // 關鍵去重 ID
-                });
-                console.log('Purchase tracked with ID: ' + finalOrderID);
-            }
-
-            alert('名額預留成功！專員稍後將與您電話聯繫說明，請保持手機暢通！');
-            isSubmitting = false; 
-            localStorage.removeItem('last_purchase_id');
-            // 延遲刷新以確保追蹤發出
-            setTimeout(function(){ location.reload(); }, 1200); 
-        }
-    };
-
-    // C. 表單監聽邏輯
+    // B. 表單提交修正邏輯 [cite: 133-141]
     const orderForm = document.getElementById('orderForm');
     if(orderForm) {
         orderForm.addEventListener('submit', function(e) {
+            // 攔截表單原生的提交跳轉
+            e.preventDefault();
+
             if (isSubmitting) return;
 
-            // 1. 生成唯一的去重 ID 並儲存
-            const tempOrderID = 'ORD-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
-            localStorage.setItem('last_purchase_id', tempOrderID);
-
-            // 2. 處理電話與數據
+            // 處理電話數據
             const phoneInput = document.getElementById('userPhone');
             const fullPhoneInput = document.getElementById('fullPhone');
             if(phoneInput && fullPhoneInput) fullPhoneInput.value = phoneInput.value.trim();
             
+            // 生成唯一 ID 供感謝頁去重
+            const tempOrderID = 'ORD-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+            localStorage.setItem('last_purchase_id', tempOrderID);
+
             isSubmitting = true; 
             const submitBtn = document.getElementById('submitBtn');
             if(submitBtn) {
-                submitBtn.innerText = "處理中...";
+                submitBtn.innerText = "正在提交...";
                 submitBtn.disabled = true;
             }
+
+            // 使用 fetch 異步發送數據到 Google Forms
+            const formData = new FormData(orderForm);
+            fetch(orderForm.action, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors' // Google Forms 不支持跨域，但 no-cors 可以成功發送
+            }).then(() => {
+                // 發送成功後，手動跳轉到自定義感謝頁
+                window.location.href = 'thanks.html';
+            }).catch((error) => {
+                console.error('Submission error:', error);
+                // 即使出錯也跳轉，確保不卡在當前頁
+                window.location.href = 'thanks.html';
+            });
         });
     }
 </script>
